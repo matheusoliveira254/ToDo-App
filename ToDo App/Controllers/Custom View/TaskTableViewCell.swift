@@ -8,7 +8,11 @@
 import UIKit
 
 class TaskTableViewCell: UITableViewCell {
-
+    //MARK: - IBOutlet
+    @IBOutlet weak var taskNameLabel: UILabel!
+    @IBOutlet weak var stepsNumberLabel: UILabel!
+    @IBOutlet weak var taskCheckButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,5 +23,7 @@ class TaskTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    //MARK: - IBActions
+    @IBAction func taskCheckButtonTapped(_ sender: UIButton) {
+    }
 }

@@ -11,7 +11,7 @@
         <!--ToDo List-->
         <scene sceneID="sPD-p4-o5B">
             <objects>
-                <tableViewController id="ESX-NM-cAo" sceneMemberID="viewController">
+                <tableViewController id="ESX-NM-cAo" customClass="TaskListTableViewController" customModule="ToDo_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="97n-a7-tXD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,15 +23,18 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eYD-Ex-Wif">
                                     <rect key="frame" x="10" y="5" width="384" height="34"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bIb-zF-6DC">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Task Name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bIb-zF-6DC">
                                             <rect key="frame" x="0.0" y="0.0" width="309" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Po-x0-gdf">
                                             <rect key="frame" x="317" y="0.0" width="67" height="34"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="filled" title="Create"/>
+                                            <connections>
+                                                <action selector="createTaskButtonTapped:" destination="ESX-NM-cAo" eventType="touchUpInside" id="OkD-PS-973"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
@@ -45,7 +48,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="RHH-fV-uD3">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="70" id="RHH-fV-uD3" customClass="TaskTableViewCell" customModule="ToDo_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88.5" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RHH-fV-uD3" id="2ou-vm-f4B">
@@ -56,23 +59,26 @@
                                             <rect key="frame" x="20" y="2" width="374" height="66"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ner-Kw-3ou">
-                                                    <rect key="frame" x="0.0" y="0.0" width="324.5" height="66"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="307.5" height="66"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7P-j2-luE">
                                                             <rect key="frame" x="0.0" y="0.0" width="47.5" height="66"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="checkmark.diamond" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="taskCheckButtonTapped:" destination="RHH-fV-uD3" eventType="touchUpInside" id="tii-SM-nbP"/>
+                                                            </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SV6-hU-3eO">
-                                                            <rect key="frame" x="55.5" y="0.0" width="269" height="66"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Task Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SV6-hU-3eO">
+                                                            <rect key="frame" x="55.5" y="0.0" width="252" height="66"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yU-b0-bw0">
-                                                    <rect key="frame" x="332.5" y="0.0" width="41.5" height="66"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Steps &gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yU-b0-bw0">
+                                                    <rect key="frame" x="315.5" y="0.0" width="58.5" height="66"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -88,6 +94,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="stepsNumberLabel" destination="9yU-b0-bw0" id="O61-hK-11Y"/>
+                                    <outlet property="taskCheckButton" destination="P7P-j2-luE" id="c9k-so-P9C"/>
+                                    <outlet property="taskNameLabel" destination="SV6-hU-3eO" id="Ssd-tv-TEp"/>
                                     <segue destination="KZx-W8-3aB" kind="show" id="h5b-7U-6pA"/>
                                 </connections>
                             </tableViewCell>
@@ -98,15 +107,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="ToDo List" id="6Aq-OX-9lI"/>
+                    <connections>
+                        <outlet property="taskNameTextField" destination="bIb-zF-6DC" id="AGi-KN-k7L"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fqe-d0-oV1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="926.08695652173924" y="126.5625"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Steps List Table View Controller-->
         <scene sceneID="kfK-cS-Dxy">
             <objects>
-                <tableViewController id="KZx-W8-3aB" sceneMemberID="viewController">
+                <tableViewController id="KZx-W8-3aB" customClass="StepsListTableViewController" customModule="ToDo_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="dMU-Gm-mDP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,15 +130,18 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Thx-We-75N">
                                     <rect key="frame" x="10" y="5" width="384" height="34"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gaX-rr-jPX">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Steps To Complete..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gaX-rr-jPX">
                                             <rect key="frame" x="0.0" y="0.0" width="326" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cir-ex-EAx">
                                             <rect key="frame" x="334" y="0.0" width="50" height="34"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="filled" title="Add"/>
+                                            <connections>
+                                                <action selector="addStepButtonTapped:" destination="KZx-W8-3aB" eventType="touchUpInside" id="CQe-GR-4tc"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
@@ -140,7 +155,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="rRJ-im-19w">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="rRJ-im-19w" customClass="StepTableViewCell" customModule="ToDo_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88.5" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rRJ-im-19w" id="fIu-Ib-2sS">
@@ -150,16 +165,19 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="276" translatesAutoresizingMaskIntoConstraints="NO" id="T0Y-r6-yzZ">
                                             <rect key="frame" x="20" y="2" width="374" height="66"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DpQ-zR-QGa">
-                                                    <rect key="frame" x="0.0" y="0.0" width="41.5" height="66"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DpQ-zR-QGa">
+                                                    <rect key="frame" x="0.0" y="0.0" width="35.5" height="66"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fy-ko-A6w">
-                                                    <rect key="frame" x="317.5" y="0.0" width="56.5" height="66"/>
+                                                    <rect key="frame" x="311.5" y="0.0" width="62.5" height="66"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="checkmark.square" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="stepCheckButtonTapped:" destination="rRJ-im-19w" eventType="touchUpInside" id="Xc1-Wl-adl"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -171,6 +189,10 @@
                                         <constraint firstItem="T0Y-r6-yzZ" firstAttribute="top" secondItem="fIu-Ib-2sS" secondAttribute="top" constant="2" id="lRp-Qd-BwL"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="stepCheckButton" destination="1fy-ko-A6w" id="YCM-KD-7Pg"/>
+                                    <outlet property="stepNameLabel" destination="DpQ-zR-QGa" id="HnQ-cm-7YC"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -179,6 +201,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="iOo-Vf-HHN"/>
+                    <connections>
+                        <outlet property="stepsNameTextField" destination="gaX-rr-jPX" id="62B-ds-Mgv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6b-l8-2Qb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

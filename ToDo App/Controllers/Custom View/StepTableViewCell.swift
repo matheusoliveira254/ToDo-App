@@ -8,7 +8,10 @@
 import UIKit
 
 class StepTableViewCell: UITableViewCell {
-
+    //MARK: - IBOutles
+    @IBOutlet weak var stepNameLabel: UILabel!
+    @IBOutlet weak var stepCheckButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -17,7 +20,8 @@ class StepTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
-
+    //MARK: - IBActions
+    @IBAction func stepCheckButtonTapped(_ sender: UIButton) {
+    }
 }
