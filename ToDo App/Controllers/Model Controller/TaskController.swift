@@ -32,6 +32,11 @@ class TaskController {
         save()
     }
     
+    //MARK: - Methods
+    func toggleTaskIsChecked() {
+        
+    }
+    
     //MARK: - Persistence
     //Computed Property
     private var fileURL: URL? {

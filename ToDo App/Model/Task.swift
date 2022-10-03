@@ -12,11 +12,13 @@ class Task: Codable {
     let id: UUID
     var name: String
     var steps: [Step]
+    var isToggleTask: Bool
     
-    init(id: UUID = UUID(), name: String, steps: [Step] = []) {
+    init(id: UUID = UUID(), name: String, steps: [Step] = [], isToggleTask: Bool = false) {
         self.id = id
         self.name = name
         self.steps = steps
+        self.isToggleTask = isToggleTask
     }
 }
 

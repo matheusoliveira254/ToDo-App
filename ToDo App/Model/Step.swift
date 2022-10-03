@@ -10,10 +10,12 @@ import Foundation
 class Step: Codable{
     let stepId: UUID
     var stepName: String
+    var isToggleStep: Bool
     
-    init(stepId: UUID = UUID(), stepName: String) {
+    init(stepId: UUID = UUID(), stepName: String, isToggleStep: Bool = false) {
         self.stepId = stepId
         self.stepName = stepName
+        self.isToggleStep = isToggleStep
     }
 }
 

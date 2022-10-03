@@ -7,23 +7,21 @@
 
 import UIKit
 
+protocol TaskTableViewCellDelegate: AnyObject {
+    func taskCheckButtonWasTapped(cell: TaskTableViewCell)
+}
+
 class TaskTableViewCell: UITableViewCell {
     //MARK: - IBOutlet
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var stepsNumberLabel: UILabel!
     @IBOutlet weak var taskCheckButton: UIButton!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    //MARK: - Properties
+    weak var delegate: TaskTableViewCellDelegate?
+    
     //MARK: - IBActions
     @IBAction func taskCheckButtonTapped(_ sender: UIButton) {
+        delegate?.taskCheckButtonWasTapped(cell: self)
     }
 }
