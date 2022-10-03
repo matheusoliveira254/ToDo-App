@@ -20,24 +20,46 @@ class TaskController {
     }
     
     //MARK: - CRUD
-    func createTask() {
+    func createTask(name: String, steps: [Step] = []) {
+        let taskCreate = Task(name: name, steps: steps)
+        tasks.append(taskCreate)
         save()
     }
     
-    func updateTask() {
-        save()
-    }
-    
-    func deleteTask() {
+    func deleteTask(taskToBeDeleted: Task) {
+        guard let indesOfTaskToBeDeleted = tasks.firstIndex(of: taskToBeDeleted) else {return}
+        tasks.remove(at: indesOfTaskToBeDeleted)
         save()
     }
     
     //MARK: - Persistence
+    //Computed Property
+    private var fileURL: URL? {
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return nil}
+        let finalUrl = documentsDirectory.appendingPathComponent("tasks.json")
+        return finalUrl
+    }
+    
     func save() {
+        guard let url = fileURL else {return}
         
+        do {
+            let data = try JSONEncoder().encode(tasks)
+            try data.write(to: url)
+        } catch let error {
+            print("Error \(error)")
+        }
     }
     
     func load() {
+        guard let loadLocation = fileURL else {return}
         
+        do {
+            let data = try Data(contentsOf: loadLocation)
+            let decodeData = try JSONDecoder().decode([Task].self, from: data)
+            self.tasks = decodeData
+        } catch let error {
+            print("Error \(error)")
+        }
     }
 }
