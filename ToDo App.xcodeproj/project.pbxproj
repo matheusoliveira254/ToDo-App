@@ -18,6 +18,8 @@
 		A1DEF44328E8F8E300BE9C39 /* StepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DEF44228E8F8E300BE9C39 /* StepTableViewCell.swift */; };
 		A1DEF44628E8F93100BE9C39 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DEF44528E8F93100BE9C39 /* Task.swift */; };
 		A1DEF44928E8F95900BE9C39 /* TaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DEF44828E8F95900BE9C39 /* TaskController.swift */; };
+		A1DEF44D28EA716000BE9C39 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DEF44C28EA716000BE9C39 /* Step.swift */; };
+		A1DEF44F28EA718600BE9C39 /* StepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DEF44E28EA718600BE9C39 /* StepController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		A1DEF44228E8F8E300BE9C39 /* StepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepTableViewCell.swift; sourceTree = "<group>"; };
 		A1DEF44528E8F93100BE9C39 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		A1DEF44828E8F95900BE9C39 /* TaskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskController.swift; sourceTree = "<group>"; };
+		A1DEF44C28EA716000BE9C39 /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
+		A1DEF44E28EA718600BE9C39 /* StepController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				A1DEF44528E8F93100BE9C39 /* Task.swift */,
+				A1DEF44C28EA716000BE9C39 /* Step.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				A1DEF44828E8F95900BE9C39 /* TaskController.swift */,
+				A1DEF44E28EA718600BE9C39 /* StepController.swift */,
 			);
 			path = "Model Controller";
 			sourceTree = "<group>";
@@ -209,8 +215,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1DEF44D28EA716000BE9C39 /* Step.swift in Sources */,
 				A1DEF43C28E8F84C00BE9C39 /* TaskListTableViewController.swift in Sources */,
 				A1DEF42528E7D70C00BE9C39 /* AppDelegate.swift in Sources */,
+				A1DEF44F28EA718600BE9C39 /* StepController.swift in Sources */,
 				A1DEF44128E8F8D200BE9C39 /* TaskTableViewCell.swift in Sources */,
 				A1DEF44328E8F8E300BE9C39 /* StepTableViewCell.swift in Sources */,
 				A1DEF42728E7D70C00BE9C39 /* SceneDelegate.swift in Sources */,
