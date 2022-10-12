@@ -30,4 +30,4 @@ class StepController {
         stepToBeToggled.isToggleStep.toggle()
         TaskController.sharedInstance.save()
     }
-}
+}//End of class

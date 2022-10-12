@@ -19,11 +19,12 @@ class TaskTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     weak var delegateTask: TaskTableViewCellDelegate?
-//    var task: Task? {
-//        didSet {
-//            updateViews(task: task)
-//        }
-//    }
+    var task: Task? {
+        didSet {
+            guard let unwrappedTask = task else {return}
+            updateViews(task: unwrappedTask)
+        }
+    }
     
     //MARK: - Methods
     func updateViews(task: Task?) {
@@ -39,4 +40,4 @@ class TaskTableViewCell: UITableViewCell {
     @IBAction func taskCheckButtonTapped(_ sender: UIButton) {
         delegateTask?.taskCheckButtonWasTapped(cell: self)
     }
-}
+}//End of class

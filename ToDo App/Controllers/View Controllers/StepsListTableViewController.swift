@@ -18,9 +18,10 @@ class StepsListTableViewController: UITableViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
-
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,10 +40,10 @@ class StepsListTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            guard let task = task else {return}
+            let step = task.steps[indexPath.row]
+            StepController.sharedInstance.deleteStep(stepToBeDeleted: step, task: task)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
     //MARK: - IBAction
@@ -51,7 +52,7 @@ class StepsListTableViewController: UITableViewController {
         StepController.sharedInstance.createStep(name: stepsName, task: task)
         tableView.reloadData()
     }
-}
+}//End of class
 
 extension StepsListTableViewController: StepTableViewCellDelegate {
     func stepCheckButtonWasTapped(cell: StepTableViewCell) {

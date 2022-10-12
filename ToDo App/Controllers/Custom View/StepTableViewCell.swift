@@ -18,12 +18,13 @@ class StepTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     weak var delegateStep: StepTableViewCellDelegate?
-//    var step: Step? {
-//        didSet{
-//            updateViews(step: step)
-//        }
-//    }
-//    
+    var step: Step? {
+        didSet{
+            guard let unwrappedStep = step else {return}
+            updateViews(step: unwrappedStep)
+        }
+    }
+    
     //MARK: - Methods
     func updateViews(step: Step) {
         stepNameLabel.text = step.stepName
@@ -36,4 +37,4 @@ class StepTableViewCell: UITableViewCell {
     @IBAction func stepCheckButtonTapped(_ sender: UIButton) {
         delegateStep?.stepCheckButtonWasTapped(cell: self)
     }
-}
+}//End of class

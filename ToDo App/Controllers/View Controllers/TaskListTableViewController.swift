@@ -17,15 +17,24 @@ class TaskListTableViewController: UITableViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shared.tasks.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as? TaskTableViewCell else {return UITableViewCell()}
         let task = shared.tasks[indexPath.row]
@@ -34,14 +43,14 @@ class TaskListTableViewController: UITableViewController {
         
         return cell
     }
-
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            let task = shared.tasks[indexPath.row]
+            shared.deleteTask(taskToBeDeleted: task)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+      
         }    
     }
     
@@ -61,7 +70,7 @@ class TaskListTableViewController: UITableViewController {
         shared.createTask(name: taskName)
         tableView.reloadData()
     }
-}
+}//End of class
 
 extension TaskListTableViewController: TaskTableViewCellDelegate {
     func taskCheckButtonWasTapped(cell: TaskTableViewCell) {
