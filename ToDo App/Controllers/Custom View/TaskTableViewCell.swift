@@ -18,10 +18,25 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var taskCheckButton: UIButton!
     
     //MARK: - Properties
-    weak var delegate: TaskTableViewCellDelegate?
+    weak var delegateTask: TaskTableViewCellDelegate?
+//    var task: Task? {
+//        didSet {
+//            updateViews(task: task)
+//        }
+//    }
+    
+    //MARK: - Methods
+    func updateViews(task: Task?) {
+        guard let task = task else {return}
+        taskNameLabel.text = task.name
+        stepsNumberLabel.text = "\(task.steps.count)>"
+        let checkedImageName = task.isToggleTask ? "checkmark.diamond.fill" : "checkmark.diamond"
+        let checkedImage = UIImage(systemName: checkedImageName)
+        taskCheckButton.setImage(checkedImage, for: .normal)
+    }
     
     //MARK: - IBActions
     @IBAction func taskCheckButtonTapped(_ sender: UIButton) {
-        delegate?.taskCheckButtonWasTapped(cell: self)
+        delegateTask?.taskCheckButtonWasTapped(cell: self)
     }
 }

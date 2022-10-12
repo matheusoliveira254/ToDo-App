@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qc0-yW-qb4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,12 +25,12 @@
                                     <rect key="frame" x="10" y="5" width="384" height="34"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Task Name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bIb-zF-6DC">
-                                            <rect key="frame" x="0.0" y="0.0" width="309" height="34"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="301" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Po-x0-gdf">
-                                            <rect key="frame" x="317" y="0.0" width="67" height="34"/>
+                                            <rect key="frame" x="309" y="0.0" width="75" height="34"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="filled" title="Create"/>
                                             <connections>
@@ -49,7 +50,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="70" id="RHH-fV-uD3" customClass="TaskTableViewCell" customModule="ToDo_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88.5" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RHH-fV-uD3" id="2ou-vm-f4B">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -62,7 +63,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="307.5" height="66"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7P-j2-luE">
-                                                            <rect key="frame" x="0.0" y="0.0" width="47.5" height="66"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="53" height="66"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="checkmark.diamond" catalog="system"/>
                                                             <connections>
@@ -70,7 +71,7 @@
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Task Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SV6-hU-3eO">
-                                                            <rect key="frame" x="55.5" y="0.0" width="252" height="66"/>
+                                                            <rect key="frame" x="61" y="0.0" width="246.5" height="66"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -97,7 +98,7 @@
                                     <outlet property="stepsNumberLabel" destination="9yU-b0-bw0" id="O61-hK-11Y"/>
                                     <outlet property="taskCheckButton" destination="P7P-j2-luE" id="c9k-so-P9C"/>
                                     <outlet property="taskNameLabel" destination="SV6-hU-3eO" id="Ssd-tv-TEp"/>
-                                    <segue destination="KZx-W8-3aB" kind="show" id="h5b-7U-6pA"/>
+                                    <segue destination="KZx-W8-3aB" kind="show" identifier="toStepsVc" id="h5b-7U-6pA"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -131,12 +132,12 @@
                                     <rect key="frame" x="10" y="5" width="384" height="34"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Steps To Complete..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gaX-rr-jPX">
-                                            <rect key="frame" x="0.0" y="0.0" width="326" height="34"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="321" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cir-ex-EAx">
-                                            <rect key="frame" x="334" y="0.0" width="50" height="34"/>
+                                            <rect key="frame" x="329" y="0.0" width="55" height="34"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="filled" title="Add"/>
                                             <connections>
@@ -155,24 +156,24 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="rRJ-im-19w" customClass="StepTableViewCell" customModule="ToDo_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88.5" width="414" height="70"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="stepCell" rowHeight="70" id="rRJ-im-19w" customClass="StepTableViewCell" customModule="ToDo_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="94" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rRJ-im-19w" id="fIu-Ib-2sS">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="276" translatesAutoresizingMaskIntoConstraints="NO" id="T0Y-r6-yzZ">
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="T0Y-r6-yzZ">
                                             <rect key="frame" x="20" y="2" width="374" height="66"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DpQ-zR-QGa">
-                                                    <rect key="frame" x="0.0" y="0.0" width="35.5" height="66"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Step" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DpQ-zR-QGa">
+                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="66"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fy-ko-A6w">
-                                                    <rect key="frame" x="311.5" y="0.0" width="62.5" height="66"/>
+                                                    <rect key="frame" x="325" y="0.0" width="49" height="66"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="checkmark.square" catalog="system"/>
                                                     <connections>
@@ -215,7 +216,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qc0-yW-qb4" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="p47-wj-ZyI">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -229,7 +230,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checkmark.diamond" catalog="system" width="128" height="122"/>
+        <image name="checkmark.diamond" catalog="system" width="128" height="124"/>
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

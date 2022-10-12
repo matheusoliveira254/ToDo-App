@@ -11,22 +11,27 @@ class TaskListTableViewController: UITableViewController {
     //MARK: - IBOutlet
     @IBOutlet weak var taskNameTextField: UITextField!
     
+    //MARK: - Properties
+    let shared = TaskController.sharedInstance
+    
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return shared.tasks.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as? TaskTableViewCell else {return UITableViewCell()}
+        let task = shared.tasks[indexPath.row]
+        cell.updateViews(task: task)
+        cell.delegateTask = self
+        
         return cell
     }
 
@@ -39,15 +44,30 @@ class TaskListTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    //Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        guard segue.identifier == "toStepsVc",
+              let destinationVC = segue.destination as? StepsListTableViewController,
+              let indexPath = tableView.indexPathForSelectedRow else {return}
+        
+        let taskToSend = shared.tasks[indexPath.row]
+        destinationVC.task = taskToSend
     }
+    
     //MARK: - IBAction
     @IBAction func createTaskButtonTapped(_ sender: UIButton) {
+        guard let taskName = taskNameTextField.text else {return}
+        shared.createTask(name: taskName)
+        tableView.reloadData()
+    }
+}
+
+extension TaskListTableViewController: TaskTableViewCellDelegate {
+    func taskCheckButtonWasTapped(cell: TaskTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else {return}
+        let index = shared.tasks[indexPath.row]
+        shared.toggleTaskIsChecked(task: index)
+        cell.updateViews(task: index)
     }
 }

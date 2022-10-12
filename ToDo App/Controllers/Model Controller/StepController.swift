@@ -8,6 +8,9 @@
 import Foundation
 
 class StepController {
+    
+    static let sharedInstance = StepController()
+    
     //MARK: - CRUD
     func createStep(name: String, task: Task) {
         let stepCreated = Step(stepName: name)
@@ -23,6 +26,8 @@ class StepController {
     }
     
     //MARK: - Methods
-    func toggleStepIsChecked() {
+    func toggleStepIsChecked(stepToBeToggled: Step) {
+        stepToBeToggled.isToggleStep.toggle()
+        TaskController.sharedInstance.save()
     }
 }

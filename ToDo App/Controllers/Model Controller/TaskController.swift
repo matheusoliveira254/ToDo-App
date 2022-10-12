@@ -12,7 +12,7 @@ class TaskController {
     static var sharedInstance = TaskController()
     
     //MARK: - SOT
-    private var tasks: [Task] = []
+    private(set) var tasks: [Task] = []
     
     //MARK: - Initializers
     init() {
@@ -33,8 +33,9 @@ class TaskController {
     }
     
     //MARK: - Methods
-    func toggleTaskIsChecked() {
-        
+    func toggleTaskIsChecked(task: Task) {
+        task.isToggleTask.toggle()
+        save()
     }
     
     //MARK: - Persistence
