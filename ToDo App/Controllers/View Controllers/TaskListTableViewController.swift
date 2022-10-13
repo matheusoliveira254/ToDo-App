@@ -7,7 +7,10 @@
 
 import UIKit
 
+let allStepsCompleted = NSNotification.Name("Mark all as complete.")
+
 class TaskListTableViewController: UITableViewController {
+        
     //MARK: - IBOutlet
     @IBOutlet weak var taskNameTextField: UITextField!
     
@@ -70,6 +73,7 @@ class TaskListTableViewController: UITableViewController {
         shared.createTask(name: taskName)
         tableView.reloadData()
     }
+    
 }//End of class
 
 extension TaskListTableViewController: TaskTableViewCellDelegate {

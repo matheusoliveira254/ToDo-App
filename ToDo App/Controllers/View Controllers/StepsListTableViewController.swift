@@ -8,16 +8,18 @@
 import UIKit
 
 class StepsListTableViewController: UITableViewController {
+        
     //MARK: - IBOutlets
     @IBOutlet weak var stepsNameTextField: UITextField!
     
     //MARK: - Properties
-//    let shared = TaskController.sharedInstance
+    let shared = TaskController.sharedInstance
     var task: Task?
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteAllTasks), name: allStepsCompleted, object: nil)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -36,6 +38,12 @@ class StepsListTableViewController: UITableViewController {
         cell.delegateStep = self
         return cell
     }
+    
+    @objc func deleteAllTasks() {
+        guard let task = task else {return}
+        TaskController.sharedInstance.deleteTask(taskToBeDeleted: task)
+        self.tableView.reloadData()
+    }
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -46,12 +54,29 @@ class StepsListTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }    
     }
+    
+    // Delets the current task once all steps are marked as completed
+    func presentAllAsCompleteAlert() {
+        let alertController = UIAlertController(title: "All Done!", message: "Wants us to delete this list?", preferredStyle: .alert)
+        
+        let yesDeleteListAction = UIAlertAction(title: "Yes", style: .default) {_ in
+            self.deleteAllTasks()
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        let noDeleteListAction = UIAlertAction(title: "No", style: .cancel)
+        alertController.addAction(noDeleteListAction)
+        alertController.addAction(yesDeleteListAction)
+        present(alertController, animated: true)
+    }
+    
     //MARK: - IBAction
     @IBAction func addStepButtonTapped(_ sender: UIButton) {
         guard let stepsName = stepsNameTextField.text, let task = task else {return}
         StepController.sharedInstance.createStep(name: stepsName, task: task)
         tableView.reloadData()
     }
+    
 }//End of class
 
 extension StepsListTableViewController: StepTableViewCellDelegate {
@@ -61,5 +86,16 @@ extension StepsListTableViewController: StepTableViewCellDelegate {
         let index = task.steps[indexPath.row]
         StepController.sharedInstance.toggleStepIsChecked(stepToBeToggled: index)
         cell.updateViews(step: index)
+        var steps = 0
+        for step in task.steps {
+            if step.isToggleStep {
+                steps += 1
+            }
+        }
+        let allStepsComplete = task.steps.count
+        
+        if steps == allStepsComplete {
+            presentAllAsCompleteAlert()
+        }
     }
 }

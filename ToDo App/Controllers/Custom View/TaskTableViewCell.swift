@@ -30,7 +30,7 @@ class TaskTableViewCell: UITableViewCell {
     func updateViews(task: Task?) {
         guard let task = task else {return}
         taskNameLabel.text = task.name
-        stepsNumberLabel.text = "\(task.steps.count)>"
+        stepsNumberLabel.text = "\(task.steps.count)"
         let checkedImageName = task.isToggleTask ? "checkmark.diamond.fill" : "checkmark.diamond"
         let checkedImage = UIImage(systemName: checkedImageName)
         taskCheckButton.setImage(checkedImage, for: .normal)
